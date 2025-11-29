@@ -20,6 +20,7 @@ public class Employee { //representing employee with all informations
     private final String jobTitle;
     private final String company;
 
+    //constructor for employee
     public Employee(String firstName, String lastName, String gender, String email,
             double salary, String department, String position, String jobTitle, String company) {
         this.firstName = firstName;
@@ -51,7 +52,7 @@ public class Employee { //representing employee with all informations
     public String getPosition() {
         return position;
     }
-    
+    // returns a CSV-style string of all employee data. used for saving to a file 
     @Override
     public String toString() {
         return firstName + "," + lastName + "," + gender + "," + email + ","
