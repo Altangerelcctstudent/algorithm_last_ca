@@ -11,10 +11,12 @@ import java.io.*;
  * @author altangerel
  */
 public class FileUtils { //reading and writing employee data to the file
+    
+    //saves a single employee to the file
     public static void saveEmployee(Employee emp, String fileName) { // saving an employee to the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
-            bw.write(emp.toString());
-            bw.newLine();
+            bw.write(emp.toString()); // covert employee to CSV  string
+            bw.newLine(); //add new line after each record
         } catch (IOException e) {
             System.out.println("Error saving employee: " + e.getMessage());
         }
@@ -22,12 +24,13 @@ public class FileUtils { //reading and writing employee data to the file
     // loads all employee from the file and inserts them into the tree
     public static void loadEmployees(BinaryTree tree, String fileName) {
         File file = new File(fileName);
-        if (!file.exists()) return;
+        if (!file.exists()) return; //if file does not exist, skip loading
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
+                //only parse valid lines with 9 fields
                 if (parts.length == 9) {
                     tree.insert(new Employee(
                             parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim(),
