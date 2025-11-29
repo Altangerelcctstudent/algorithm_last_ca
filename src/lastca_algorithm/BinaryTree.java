@@ -10,9 +10,9 @@ import java.util.List;
  *
  * @author altangerel
  */
-public class BinaryTree {
+public class BinaryTree { //binary search tree implementation for storing employee objects.
     Node root;
-
+    // inserting new employee into the BST
     public void insert(Employee emp) {
         root = insertRec(root, emp);
     }
